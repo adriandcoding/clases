@@ -11,7 +11,7 @@ class ReservaBase {
   }
 
   calcularSubtotal(): number {
-    return this.reservas.reduce((subtotal, reserva) => {
+    return this.reservas.reduce((subtotal, reserva): number => {
       const precioBase = this.precios[reserva.tipoHabitacion];
       const cargosAdicionales = (reserva.pax - 1) * 40;
       const cargoDesayuno = reserva.desayuno
@@ -59,13 +59,14 @@ class ReservaTourOperador extends ReservaBase {
     return subtotalConDescuento + iva;
   }
 }
+//cálculo de TOTAL y SUBTOTAL en el cliente particular
 const clienteParticular = new ReservaParticular(reservas);
 console.log(
   "Cliente Particular - Subtotal:",
   clienteParticular.calcularSubtotal()
 );
 console.log("Cliente Particular - Total:", clienteParticular.calcularTotal());
-
+// cálculo de TOTAL y SUBTOTAL en Tour Operador
 const tourOperador = new ReservaTourOperador(reservas);
 console.log("Tour Operador - Subtotal:", tourOperador.calcularSubtotal());
 console.log("Tour Operador - Total:", tourOperador.calcularTotal());
